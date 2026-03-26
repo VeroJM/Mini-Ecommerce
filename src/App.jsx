@@ -7,6 +7,7 @@ import { CategoryFilter } from "./components/CategoryFilter.jsx";
 import { SearchBar } from "./components/SearchBar.jsx";
 import { DiscountFilter } from "./components/DiscountFilter.jsx";
 import { OrderBy } from "./components/OrderBy.jsx";
+import { ProductDetail } from "./components/ProductDetail.jsx";
 
 export const App = () => {
   // estados 
@@ -17,6 +18,7 @@ export const App = () => {
   const [search, setSearch] = useState("");
   const [onlyDiscount, setOnlyDiscount] = useState(false);
   const [order, setOrder] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null);
   
   useEffect(() => {
     const traerProductos = async () => {
@@ -97,11 +99,13 @@ export const App = () => {
             <p>No hay resultados</p>
           ) : (
             filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} setSelectedProduct={setSelectedProduct}/>
             ))
           )}
         </div>
       </div>
+
+      <ProductDetail product={selectedProduct} setSelectedProduct={setSelectedProduct}/>
       
     </div>
   );
