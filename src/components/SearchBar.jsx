@@ -1,3 +1,4 @@
+import "../styles/SearchBar.css";
 
 export const SearchBar = ({ search, setSearch }) => {
 
@@ -7,7 +8,7 @@ export const SearchBar = ({ search, setSearch }) => {
 
   return (
     <div>
-      <input
+      <input className="search-input"
         type="text"
         placeholder="Buscar producto..."
         value={search}

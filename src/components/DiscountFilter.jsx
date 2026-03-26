@@ -1,3 +1,4 @@
+import "../styles/DiscountFilter.css";
 
 export const DiscountFilter = ({ onlyDiscount, setOnlyDiscount }) => {
 
@@ -6,7 +7,7 @@ export const DiscountFilter = ({ onlyDiscount, setOnlyDiscount }) => {
   };
 
   return (
-    <div>
+    <div className="discount-filter">
       <label>
         <input 
           type="checkbox"
