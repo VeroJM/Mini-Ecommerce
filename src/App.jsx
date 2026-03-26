@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { obtenerProducts } from "./utils/API.js";
 import { ProductCard } from "./components/ProductCard.jsx";
 import { CategoryFilter } from "./components/CategoryFilter.jsx"; 
+import { SearchBar } from "./components/SearchBar.jsx";
 
 export const App = () => {
   // estados 
@@ -11,6 +12,7 @@ export const App = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const traerProductos = async () => {
@@ -28,11 +30,21 @@ export const App = () => {
     traerProductos();
   }, []);
 
-  const filteredProducts = category
-  ? products.filter(function(product) {
+  let filteredProducts = products;
+
+  // filtro por categoría
+  if (category !== "") {
+    filteredProducts = filteredProducts.filter(function(product) {
       return product.category === category;
-  })
-  : products;
+    });
+  }
+
+  // filtro por busqueda
+  if (search !== "") {
+    filteredProducts = filteredProducts.filter(function(product) {
+      return product.title.toLowerCase().includes(search.toLowerCase());
+    });
+  }
 
   return (
     <div>
@@ -42,6 +54,7 @@ export const App = () => {
       {error && <p>Error: {error}</p>}
 
       <CategoryFilter products={products} setCategory={setCategory}/>
+      <SearchBar search={search} setSearch={setSearch}/>
 
       <div className="products-container">
         {filteredProducts.map(product => (
