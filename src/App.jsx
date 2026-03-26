@@ -6,9 +6,11 @@ import { ProductCard } from "./components/ProductCard.jsx";
 import { CategoryFilter } from "./components/CategoryFilter.jsx"; 
 
 export const App = () => {
+  // estados 
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const traerProductos = async () => {
@@ -26,6 +28,12 @@ export const App = () => {
     traerProductos();
   }, []);
 
+  const filteredProducts = category
+  ? products.filter(function(product) {
+      return product.category === category;
+  })
+  : products;
+
   return (
     <div>
       <h1>MINI ECOMMERCE</h1>
@@ -33,10 +41,10 @@ export const App = () => {
       {loading && <p>Cargando productos...</p>}
       {error && <p>Error: {error}</p>}
 
-      <CategoryFilter products={products}/>
+      <CategoryFilter products={products} setCategory={setCategory}/>
 
       <div className="products-container">
-        {products.map(product => (
+        {filteredProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
