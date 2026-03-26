@@ -56,28 +56,35 @@ export const App = () => {
   }
 
   return (
-    <div>
-      <h1>MINI ECOMMERCE</h1>
+    <div className="dad-container">
 
-      {loading && <p>Cargando productos...</p>}
-      {error && <p>Error: {error}</p>}
+      <div className="sidebar">
+        <h2>Filtros</h2>
 
-      <CategoryFilter products={products} setCategory={setCategory}/>
-      <SearchBar search={search} setSearch={setSearch}/>
-      <DiscountFilter onlyDiscount={onlyDiscount} setOnlyDiscount={setOnlyDiscount}/>
+        <SearchBar search={search} setSearch={setSearch}/>
 
-      <div className="products-container">
+        <CategoryFilter products={products} setCategory={setCategory}/>
 
-        {filteredProducts.length === 0 ? (
-          <p>No hay resultados</p>
-        ) : (
-          filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))
-        )}
-
+        <DiscountFilter onlyDiscount={onlyDiscount} setOnlyDiscount={setOnlyDiscount}/>
       </div>
 
+      <div className="products-section">
+        <h1>Mini Ecommerce</h1>
+
+        {loading && <p>Cargando productos...</p>}
+        {error && <p>Error: {error}</p>}
+
+        <div className="products-container">
+          {filteredProducts.length === 0 ? (
+            <p>No hay resultados</p>
+          ) : (
+            filteredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
+        </div>
+      </div>
+      
     </div>
   );
 };
