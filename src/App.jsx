@@ -6,6 +6,7 @@ import { ProductCard } from "./components/ProductCard.jsx";
 import { CategoryFilter } from "./components/CategoryFilter.jsx"; 
 import { SearchBar } from "./components/SearchBar.jsx";
 import { DiscountFilter } from "./components/DiscountFilter.jsx";
+import { OrderBy } from "./components/OrderBy.jsx";
 
 export const App = () => {
   // estados 
@@ -15,6 +16,7 @@ export const App = () => {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
   const [onlyDiscount, setOnlyDiscount] = useState(false);
+  const [order, setOrder] = useState("");
   
   useEffect(() => {
     const traerProductos = async () => {
@@ -32,7 +34,7 @@ export const App = () => {
     traerProductos();
   }, []);
 
-  let filteredProducts = products;
+  let filteredProducts = [...products]; // protejer el array
 
   // filtro por categoría
   if (category !== "") {
@@ -51,7 +53,20 @@ export const App = () => {
   // filtro por descuento
   if (onlyDiscount) {
     filteredProducts = filteredProducts.filter(function(product) {
-      return product.discountPercentage > 0;
+      return product.discountPercentage > 10;
+    });
+  }
+
+  // ordenar por rating
+  if (order === "asc") {
+    filteredProducts.sort(function(a, b) {
+      return a.rating - b.rating;
+    });
+  }
+
+  if (order === "desc") {
+    filteredProducts.sort(function(a, b) {
+      return b.rating - a.rating;
     });
   }
 
@@ -65,6 +80,8 @@ export const App = () => {
 
         <CategoryFilter products={products} setCategory={setCategory}/>
 
+        <OrderBy order={order} setOrder={setOrder}/>
+
         <DiscountFilter onlyDiscount={onlyDiscount} setOnlyDiscount={setOnlyDiscount}/>
       </div>
 
@@ -72,6 +89,7 @@ export const App = () => {
         <h1>Mini Ecommerce</h1>
 
         {loading && <p>Cargando productos...</p>}
+        
         {error && <p>Error: {error}</p>}
 
         <div className="products-container">
