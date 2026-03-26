@@ -5,6 +5,7 @@ import { obtenerProducts } from "./utils/API.js";
 import { ProductCard } from "./components/ProductCard.jsx";
 import { CategoryFilter } from "./components/CategoryFilter.jsx"; 
 import { SearchBar } from "./components/SearchBar.jsx";
+import { DiscountFilter } from "./components/DiscountFilter.jsx";
 
 export const App = () => {
   // estados 
@@ -13,7 +14,8 @@ export const App = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
-
+  const [onlyDiscount, setOnlyDiscount] = useState(false);
+  
   useEffect(() => {
     const traerProductos = async () => {
       const res = await obtenerProducts();
@@ -46,6 +48,13 @@ export const App = () => {
     });
   }
 
+  // filtro por descuento
+  if (onlyDiscount) {
+    filteredProducts = filteredProducts.filter(function(product) {
+      return product.discountPercentage > 0;
+    });
+  }
+
   return (
     <div>
       <h1>MINI ECOMMERCE</h1>
@@ -55,6 +64,7 @@ export const App = () => {
 
       <CategoryFilter products={products} setCategory={setCategory}/>
       <SearchBar search={search} setSearch={setSearch}/>
+      <DiscountFilter onlyDiscount={onlyDiscount} setOnlyDiscount={setOnlyDiscount}/>
 
       <div className="products-container">
 
