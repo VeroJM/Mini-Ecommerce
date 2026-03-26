@@ -7,7 +7,7 @@ export const obtenerProducts = async () => {
   };
 
   try {
-    const res = await fetch(`${API}/products`);
+    const res = await fetch(`${API}/products?limit=100`);
 
     if (!res.ok) {
       throw new Error("Error al obtener los productos");
