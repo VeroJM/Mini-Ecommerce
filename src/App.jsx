@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { obtenerProducts } from "./utils/API.js";
+import { ProductCard } from "./components/ProductCard.jsx";
 
 export const App = () => {
   const [products, setProducts] = useState([]);
@@ -23,29 +24,17 @@ export const App = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h1>MINI ECOMMERCE</h1>
 
       {loading && <p>Cargando productos...</p>}
-
       {error && <p>Error: {error}</p>}
 
-      {!loading && products.length === 0 && <p>No hay productos</p>}
-
-      {products.map(product => (
-        <div 
-          key={product.id} 
-          style={{
-            border: "1px solid #ccc",
-            margin: "10px 0",
-            padding: "10px",
-            borderRadius: "8px"
-          }}
-        >
-          <h2>{product.title}</h2>
-          <p>${product.price}</p>
-        </div>
-      ))}
+      <div>
+        {products.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
