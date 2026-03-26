@@ -57,10 +57,17 @@ export const App = () => {
       <SearchBar search={search} setSearch={setSearch}/>
 
       <div className="products-container">
-        {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+
+        {filteredProducts.length === 0 ? (
+          <p>No hay resultados</p>
+        ) : (
+          filteredProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )}
+
       </div>
+
     </div>
   );
 };
