@@ -1,3 +1,5 @@
+import "./styles/GlobalStyles.css"
+
 import { useEffect, useState } from "react";
 import { obtenerProducts } from "./utils/API.js";
 import { ProductCard } from "./components/ProductCard.jsx";
@@ -30,7 +32,7 @@ export const App = () => {
       {loading && <p>Cargando productos...</p>}
       {error && <p>Error: {error}</p>}
 
-      <div>
+      <div className="products-container">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
