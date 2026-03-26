@@ -14,7 +14,7 @@ export const DiscountFilter = ({ onlyDiscount, setOnlyDiscount }) => {
           checked={onlyDiscount}
           onChange={handleChange}
         />
-        Mostrar solo productos con descuento
+        Mostrar solo productos con descuento mayor al 10%
       </label>
     </div>
   );

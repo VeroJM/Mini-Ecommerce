@@ -1,0 +1,48 @@
+.product-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-detail {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+}
+
+.product-detail-btn {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-detail-btn button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: 1px solid #2a5680;
+}
+
+.product-detail-btn button:hover {
+    background-color: #2a5680;
+    color: #f0f4f7;
+    cursor: pointer;
+}
+
+.rating-detail {
+  font-size: 13px;
+}
+
+.category-detail {
+  margin-bottom: 10px;
+}
