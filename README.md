@@ -1,18 +1,59 @@
-# React + Vite
+# Mini Ecommerce - React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web tipo ecommerce desarrollada con React, que permite visualizar una lista de productos obtenidos desde una API externa, incluyendo funcionalidades como filtrado, búsqueda, ordenamiento y visualización detallada de productos.
+---
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Carga de productos
+* Filtro por categoría
+* Filtro de productos con descuento
+* Ordenamiento por rating
+* Busqueda por nombre del producto
+* Tarjeta del producto
+* Visualización detallada del producto (modal)
+* Consumo de API externa (DummyJSON)
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Preguntas para desarrollar
 
-Note: This will impact Vite dev & build performances.
+1. ¿Cuántos useState necesitaré? ¿Qué guardará cada uno?
 
-## Expanding the ESLint configuration
+necesité de 8 estados de los cuales:
+- se lista el producto de la API
+- se guarda el estado de carga
+- se guarda mensaje en caso de error
+- se guarda la categoria seleccionada
+- se guarda texto de busqueda
+- se filtra por descuentos
+- se filtra por rating asc/desc
+- se seleciona un producto desplegando un modal con mas detalles del mismo.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. ¿Cuántos useEffect necesitaré? ¿Cuál es el propósito de cada uno?
+
+en este caso solo hice uso de uno que cumple la funcion de cargar los productos desde la API.
+
+
+3. ¿Cuándo debe ejecutarse la petición a la API: una vez, o cada vez que algo cambia?
+
+una vez, al iniciar la app ya que no es necesario volver a pedir datos y los filtros trabajan sobre los datos ya cargados.
+
+4. ¿Cómo aplico varios filtros al mismo tiempo sin perder los demás?
+
+esto se logra usando una variable acumulativa, luego se aplican los filtros uno tras otro de modo que trabajan sobre el resultado anterior.
+
+5. ¿Dónde vive la lógica de filtrado: dentro de un efecto o fuera?
+
+vive fuera de useEffect ya que se ejecuta en cada render automaticamente. 
+
+---
+
+## Mi Repositorio
+
+https://github.com/VeroJM/Mini-Ecommerce.git
+
+---
+## Estudiante Veronica Jaramillo Morales 
+## Ficha 3155613
+---
